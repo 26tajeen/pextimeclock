@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title Pextons Timeclock
+        link(href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css' rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700,800' rel='stylesheet')
+        script(src='https://unpkg.com/axios/dist/axios.min.js')
+        style.
+            .font-primary {
+            font-family: 'Quicksand', sans-serif;
+            }
+    body.bg-blue-400
+        .flex.justify-center.items-center.mt-10
+            span.text-center.text-7xl.text-white.font-primary.font-normal= 'Hello, ' + operator.NAME.toString() + '! We might have a slight issue!'
+        .flex.justify-center.items-center.w-full.flex-wrap.mt-20.mx-auto
+            .flex.flex-col.justify-center.items-center.m-4
+                .h-80.w-80.rounded.overflow-hidden.shadow-lg.mb-2
+                    img(src='../' + operator.OPID + '.png')
+        if clockedIn
+            .flex.justify-center.items-center.mt-5
+                span.text-center.text-2xl.text-gray-200.font-primary.font-medium Something's gone awry...you have been working for a whopping #{working_string}
+        .flex.justify-center.items-center.mt-20
+            if clockedIn
+                button.w-60.h-28.bg-red-400.text-white.text-4xl.text-uppercase.rounded.mr-6(onclick='location.href="/clock-out-dan/' + operator.OPID + '"') Clock out
+            else
+                button.w-60.h-28.bg-green-400.text-white.text-4xl.text-uppercase.rounded(onclick='location.href="/clock-in/' + operator.OPID + '"') Clock in
+
